@@ -6,7 +6,8 @@ import (
 )
 
 const (
-	SQLite = "tasks.db"
+	SQLite   = "tasks.db"
+	InMemory = ":memory:"
 )
 
 func main() {
