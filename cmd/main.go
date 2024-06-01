@@ -10,6 +10,8 @@ const (
 	InMemory = ":memory:"
 )
 
+// TODO: update task
+
 func main() {
 	cmds.InitSession(must(SQLite))
 	cmds.RootCmd.Execute()
