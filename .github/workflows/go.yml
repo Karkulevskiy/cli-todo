@@ -32,6 +32,6 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        title: MyReleaseMessage
+        title: Release
         file: |
           tasks
