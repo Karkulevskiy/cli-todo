@@ -45,4 +45,4 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag karkulesvkiy/cli-todo
       - name: Push the Docker image
-        run: docker login -u karkulevskiy -p ${{ secrets.DOCKER_TOKEN }} && docker push karkulesvkiy/cli-todo 
+        run: docker login -u karkulevskiy -p ${{ secrets.DOCKER_TOKEN }} && docker push karkulevskiy/cli-todo 
