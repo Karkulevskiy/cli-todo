@@ -43,6 +43,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag karkulesvkiy/cli-todo
+        run: docker build . --file Dockerfile --tag karkulevskiy/cli-todo
       - name: Push the Docker image
         run: docker login -u karkulevskiy -p ${{ secrets.DOCKER_TOKEN }} && docker push karkulevskiy/cli-todo 
