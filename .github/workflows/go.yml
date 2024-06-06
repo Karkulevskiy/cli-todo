@@ -31,6 +31,8 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
+        asset_name: cli-todo
+        release_name: cli-todo
         tag: ${{ github.ref }}
         file: tasks
         file_glob: true
