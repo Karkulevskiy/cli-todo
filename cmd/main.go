@@ -10,8 +10,6 @@ const (
 	InMemory = ":memory:"
 )
 
-//test
-
 func main() {
 	cmds.InitSession(must(SQLite))
 	cmds.RootCmd.Execute()
