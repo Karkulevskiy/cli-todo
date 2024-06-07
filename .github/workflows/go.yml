@@ -1,0 +1,48 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22.2'
+
+    - name: Build
+      run: go build -v -o tasks ./cmd/main.go
+
+    - name: Test
+      run: go test -v ./...
+    
+    - name: Release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        asset_name: $tag
+        release_name: cli-todo
+        tag: ${{ github.ref }}
+        file: tasks
+        overwrite: true
+        file_glob: true
+  
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag karkulevskiy/cli-todo
+      - name: Push the Docker image
+        run: docker login -u karkulevskiy -p ${{ secrets.DOCKER_TOKEN }} && docker push karkulevskiy/cli-todo 

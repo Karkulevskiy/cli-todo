@@ -19,11 +19,15 @@ func New(dbType string) (*Storage, error) {
 		return nil, err
 	}
 
+	if err := db.Ping(); err != nil {
+		db.Close()
+		return nil, err
+	}
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS tasks
-		(
-			id INTEGER PRIMARY KEY,
-			task TEXT,
-			time TIMESTAMP
+	(
+		id INTEGER PRIMARY KEY,
+		task TEXT,
+		time TIMESTAMP
 		)`)
 
 	if err != nil {
@@ -33,8 +37,6 @@ func New(dbType string) (*Storage, error) {
 
 	return &Storage{db}, nil
 }
-
-//TODO: update task
 
 func (s *Storage) AddTask(task domain.Task) (int64, error) {
 	res, err := s.db.Exec(`INSERT INTO tasks (task, time) VALUES (?, ?)`, task.Task, task.Time)
