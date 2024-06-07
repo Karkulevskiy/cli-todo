@@ -5,6 +5,7 @@ import (
 	"github.com/karkulevskiy/cli-todo/storage/sqlite"
 )
 
+// test
 const (
 	SQLite   = "tasks.db"
 	InMemory = ":memory:"
