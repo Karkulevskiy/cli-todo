@@ -33,7 +33,7 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         asset_name: cli-todo
         release_name: cli-todo
-        tag: ${{ github.ref }}
+        tag: v1.0.0
         file: tasks
         overwrite: true
         file_glob: true
